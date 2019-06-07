@@ -25,4 +25,17 @@ router.get("/:id", async (req, res) => {
   }
 });
 
+router.post("/", async (req, res) => {
+  try {
+    const [id] = await Project.addProject(req.body, "id");
+    const project = await db("project")
+      .where({ id })
+      .first();
+    res.status(201).json(project);
+  } catch (error) {
+    const message = error[error.errno] || "We ran into an error";
+    res.status(500).json({ message, error });
+  }
+});
+
 module.exports = router;

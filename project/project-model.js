@@ -8,7 +8,8 @@ module.exports = {
   find,
   getProjectById,
   getActionsById,
-  crustyAdd
+  crustyAdd,
+  addProject
 };
 
 function find() {
@@ -37,4 +38,8 @@ async function crustyAdd(id) {
     ...a,
     actions: b
   };
+}
+
+function addProject(project) {
+  return db("project").insert(project);
 }
