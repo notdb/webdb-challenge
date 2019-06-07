@@ -18,7 +18,7 @@ router.get("/", async (req, res) => {
 
 router.get("/:id", async (req, res) => {
   try {
-    const project = await Project.getActionsById(req.params.id);
+    const project = await Project.crustyAdd(req.params.id);
     res.status(200).json(project);
   } catch (error) {
     res.status(500).json(error);
